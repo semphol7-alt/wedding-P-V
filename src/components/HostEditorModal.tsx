@@ -298,17 +298,37 @@ export const HostEditorModal: React.FC<HostEditorModalProps> = ({
                 className="w-full px-3 py-1.5 rounded-lg border border-stone-300 text-xs bg-white font-mono"
               />
             </div>
+            <div>
+              <label className="block text-[11px] font-medium text-stone-600 mb-1">
+                {lang === 'km' ? 'បទភ្លេងមង្គលការ (YouTube Video URL ឬ ID)' : 'Wedding Song (YouTube Video URL or ID)'}
+              </label>
+              <input
+                type="text"
+                value={formData.youtubeUrl || `https://youtu.be/${formData.youtubeVideoId}`}
+                onChange={(e) => {
+                  const val = e.target.value.trim();
+                  let vId = val;
+                  const match = val.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+                  if (match && match[1]) {
+                    vId = match[1];
+                  }
+                  setFormData({ ...formData, youtubeUrl: val, youtubeVideoId: vId });
+                }}
+                placeholder="https://youtu.be/YgGG8UysqUE"
+                className="w-full px-3 py-1.5 rounded-lg border border-stone-300 text-xs bg-white font-mono"
+              />
+            </div>
           </div>
 
           {/* Bank / KHQR Details */}
           <div className="space-y-3 p-4 rounded-xl border border-stone-200 bg-[#FAF7F2]">
             <span className="text-xs font-bold text-[#8E2818] block">
-              {lang === 'km' ? 'ព័ត៌មានអាំងប៉ាវ & ធនាគារ (KHQR Gift)' : 'KHQR Gift Details'}
+              {lang === 'km' ? 'ព័ត៌មានអាំងប៉ាវ & ធនាគារ (ABA KHQR Gift)' : 'ABA KHQR Gift Details'}
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
                 <label className="block text-[11px] font-medium text-stone-600 mb-1">
-                  {lang === 'km' ? 'ឈ្មោះគណនី' : 'Account Name'}
+                  {lang === 'km' ? 'ឈ្មោះគណនី (Name)' : 'Account Name'}
                 </label>
                 <input
                   type="text"
@@ -319,12 +339,35 @@ export const HostEditorModal: React.FC<HostEditorModalProps> = ({
               </div>
               <div>
                 <label className="block text-[11px] font-medium text-stone-600 mb-1">
-                  {lang === 'km' ? 'លេខគណនី និងធនាគារ' : 'Account Number & Bank'}
+                  {lang === 'km' ? 'គណនីប្រាក់រៀល (KHR)' : 'KHR Account'}
                 </label>
                 <input
                   type="text"
-                  value={formData.khqrAccountNumber}
-                  onChange={(e) => setFormData({ ...formData, khqrAccountNumber: e.target.value })}
+                  value={formData.khqrKhrAccount || ''}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      khqrKhrAccount: e.target.value,
+                      khqrAccountNumber: `${e.target.value} (KHR) / ${formData.khqrUsdAccount || ''} (USD)`,
+                    })
+                  }
+                  className="w-full px-3 py-1.5 rounded-lg border border-stone-300 text-xs bg-white font-mono"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-medium text-stone-600 mb-1">
+                  {lang === 'km' ? 'គណនីប្រាក់ដុល្លារ (USD)' : 'USD Account'}
+                </label>
+                <input
+                  type="text"
+                  value={formData.khqrUsdAccount || ''}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      khqrUsdAccount: e.target.value,
+                      khqrAccountNumber: `${formData.khqrKhrAccount || ''} (KHR) / ${e.target.value} (USD)`,
+                    })
+                  }
                   className="w-full px-3 py-1.5 rounded-lg border border-stone-300 text-xs bg-white font-mono"
                 />
               </div>

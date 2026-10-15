@@ -7,7 +7,7 @@ interface WeddingHeaderProps {
   isPlayingMusic: boolean;
   onToggleMusic: () => void;
   onOpenEditor: () => void;
-  onScrollToRsvp: () => void;
+  onScrollToGift: () => void;
 }
 
 export const WeddingHeader: React.FC<WeddingHeaderProps> = ({
@@ -16,7 +16,7 @@ export const WeddingHeader: React.FC<WeddingHeaderProps> = ({
   isPlayingMusic,
   onToggleMusic,
   onOpenEditor,
-  onScrollToRsvp,
+  onScrollToGift,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#C5A059]/25 transition-all">
@@ -98,12 +98,12 @@ export const WeddingHeader: React.FC<WeddingHeaderProps> = ({
             <span>{lang === 'km' ? 'កែប្រែធៀប' : 'Edit Info'}</span>
           </button>
 
-          {/* Primary CTA: RSVP */}
+          {/* Primary CTA: Gift Envelope */}
           <button
-            onClick={onScrollToRsvp}
+            onClick={onScrollToGift}
             className="px-4 py-2 text-xs sm:text-sm font-medium text-white bg-[#8E2818] rounded-lg hover:bg-[#731E12] shadow-sm transition-all whitespace-nowrap shrink-0"
           >
-            {lang === 'km' ? 'បញ្ជាក់ចូលរួម (RSVP)' : 'RSVP Now'}
+            {lang === 'km' ? 'ជូនពរ & អាំងប៉ាវ' : 'Send Gift (KHQR)'}
           </button>
         </div>
       </div>

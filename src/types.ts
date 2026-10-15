@@ -36,11 +36,16 @@ export interface WeddingData {
   venueAddressKhmer: string;
   venueAddressEnglish: string;
   googleMapsUrl: string;
+  youtubeVideoId: string;
+  youtubeUrl: string;
   khqrAccountName: string;
   khqrAccountNumber: string;
+  khqrKhrAccount: string;
+  khqrUsdAccount: string;
   khqrBankName: string;
   coupleQuoteKhmer: string;
   coupleQuoteEnglish: string;
+  showRsvp?: boolean;
   schedule: CeremonyEvent[];
 }
 
@@ -57,17 +62,22 @@ export const INITIAL_WEDDING_DATA: WeddingData = {
   weddingDateFormattedEnglish: 'Sunday, November 15, 2026',
   lunarDateKhmer: 'ត្រូវនឹងថ្ងៃ ៧កើត ខែកត្តិក ឆ្នាំមមី អដ្ឋស័ក ព.ស. ២៥៧០',
   weddingTimestamp: '2026-11-15T07:00:00+07:00',
-  venueNameKhmer: 'ដឺ ព្រីមៀ សេនធ័រ សែនសុខ (The Premier Centre Sen Sok)',
-  venueNameEnglish: 'The Premier Centre Sen Sok',
-  venueHall: 'អគារ C & D (Building C & D)',
-  venueAddressKhmer: 'ផ្លូវលេខ ១០០៣ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ',
-  venueAddressEnglish: 'Street 1003, Sangkat Phnom Penh Thmey, Khan Sen Sok, Phnom Penh',
-  googleMapsUrl: 'https://maps.app.goo.gl/g278wEdfiQfomdDdA',
-  khqrAccountName: 'SOK CHANRITH & CHEA REAKSMEY',
-  khqrAccountNumber: '001 234 567 (ABA Bank)',
-  khqrBankName: 'ABA Bank / Bakong KHQR',
+  venueNameKhmer: 'មណ្ឌលរៀបចំពិធីមង្គលការ (ក្រុងដូនកែវ)',
+  venueNameEnglish: 'Wedding Reception Venue (Doun Kaev)',
+  venueHall: 'ក្រុងដូនកែវ ខេត្តតាកែវ (Plus Code: XQHP+HM5)',
+  venueAddressKhmer: 'XQHP+HM5 ក្រុងដូនកែវ ខេត្តតាកែវ ប្រទេសកម្ពុជា',
+  venueAddressEnglish: 'XQHP+HM5 Doun Kaev, Takeo Province, Cambodia',
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=XQHP%2BHM5+Doun+Kaev',
+  youtubeVideoId: 'YgGG8UysqUE',
+  youtubeUrl: 'https://youtu.be/YgGG8UysqUE?si=NGfi1tD0d8vkKlnU',
+  khqrAccountName: 'SOPHAL SEM',
+  khqrAccountNumber: '600 807 171 (KHR) / 004 425 135 (USD)',
+  khqrKhrAccount: '600 807 171',
+  khqrUsdAccount: '004 425 135',
+  khqrBankName: 'ABA Bank',
   coupleQuoteKhmer: '«ក្តីស្រឡាញ់ គឺការរួមដំណើរជាមួយគ្នាដោយការគោរព យោគយល់ និងផ្តល់តម្លៃឱ្យគ្នាជារៀងរហូត»',
   coupleQuoteEnglish: '"Two souls intertwined in mutual respect, devotion and lifelong harmony."',
+  showRsvp: false,
   schedule: [
     {
       id: '1',
@@ -108,29 +118,4 @@ export const INITIAL_WEDDING_DATA: WeddingData = {
   ],
 };
 
-export const INITIAL_WISHES: GuestWish[] = [
-  {
-    id: 'w-1',
-    guestName: 'លោកពូ សុខជា និងក្រុមគ្រួសារ',
-    attendance: 'attending',
-    guestCount: 2,
-    message: 'សូមជូនពរក្មួយទាំងពីរ ស្រឡាញ់គ្នារហូតដល់ចាស់កោងខ្នង រកស៊ីមានបាន ត្រជាក់ត្រជុំដូចទឹកអង្គរ!',
-    createdAt: '2 ម៉ោងមុន',
-  },
-  {
-    id: 'w-2',
-    guestName: 'សេង វិបុល (មិត្តភក្តិវិទ្យាល័យ)',
-    attendance: 'attending',
-    guestCount: 1,
-    message: 'Happy Wedding my friend! សូមឱ្យជីវិតអាពាហ៍ពិពាហ៍ពោរពេញដោយស្នាមញញឹម និងសុភមង្គលគ្រប់វេលា។',
-    createdAt: '5 ម៉ោងមុន',
-  },
-  {
-    id: 'w-3',
-    guestName: 'អ្នកមីង ចិន្តា',
-    attendance: 'attending',
-    guestCount: 2,
-    message: 'សិរីសួស្តី ជ័យមង្គល វិបុលសុខ កើតមានដល់ក្មួយទាំងពីរក្នុងថ្ងៃមង្គលដ៏ឧត្តុង្គឧត្តមនេះ!',
-    createdAt: 'ម្សិលមិញ',
-  },
-];
+export const INITIAL_WISHES: GuestWish[] = [];

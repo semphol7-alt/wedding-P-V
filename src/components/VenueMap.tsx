@@ -18,8 +18,8 @@ export const VenueMap: React.FC<VenueMapProps> = ({ wedding, lang }) => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // Google Maps embed query for The Premier Centre Sen Sok or dynamic location
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(wedding.venueNameEnglish + ', Phnom Penh')}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  // Google Maps embed query for venue location (e.g. XQHP+HM5 Doun Kaev)
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(wedding.venueAddressEnglish || 'XQHP+HM5 Doun Kaev')}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <section id="venue" className="py-14 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">

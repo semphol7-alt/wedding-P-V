@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, ArrowUp, Share2, Heart } from 'lucide-react';
-import { WeddingData, INITIAL_WEDDING_DATA, GuestWish, INITIAL_WISHES } from './types';
+import { WeddingData, INITIAL_WEDDING_DATA } from './types';
 import { WeddingHeader } from './components/WeddingHeader';
 import { EnvelopeModal } from './components/EnvelopeModal';
 import { InvitationLetter } from './components/InvitationLetter';
@@ -8,28 +8,54 @@ import { CeremonyTimeline } from './components/CeremonyTimeline';
 import { VenueMap } from './components/VenueMap';
 import { CountdownSection } from './components/CountdownSection';
 import { PhotoGallery } from './components/PhotoGallery';
-import { RsvpForm } from './components/RsvpForm';
 import { GiftEnvelope } from './components/GiftEnvelope';
 import { HostEditorModal } from './components/HostEditorModal';
+import { YouTubeMusicPlayer } from './components/YouTubeMusicPlayer';
 import { weddingAudio } from './utils/soundEffects';
 
 export default function App() {
   const [lang, setLang] = useState<'km' | 'en'>('km');
   const [wedding, setWedding] = useState<WeddingData>(() => {
     try {
-      const saved = localStorage.getItem('khmer_wedding_data');
-      return saved ? JSON.parse(saved) : INITIAL_WEDDING_DATA;
+      const savedStr = localStorage.getItem('khmer_wedding_data');
+      if (savedStr) {
+        const parsed = JSON.parse(savedStr);
+        // If old default venue was Phnom Penh, automatically update to Doun Kaev & YouTube song
+        if (
+          !parsed.youtubeVideoId ||
+          parsed.khqrAccountName === 'SOK CHANRITH & CHEA REAKSMEY' ||
+          !parsed.khqrKhrAccount ||
+          parsed.venueAddressKhmer?.includes('ភ្នំពេញថ្មី') ||
+          parsed.venueAddressKhmer?.includes('សែនសុខ')
+        ) {
+          const updated = {
+            ...parsed,
+            venueNameKhmer: INITIAL_WEDDING_DATA.venueNameKhmer,
+            venueNameEnglish: INITIAL_WEDDING_DATA.venueNameEnglish,
+            venueHall: INITIAL_WEDDING_DATA.venueHall,
+            venueAddressKhmer: INITIAL_WEDDING_DATA.venueAddressKhmer,
+            venueAddressEnglish: INITIAL_WEDDING_DATA.venueAddressEnglish,
+            googleMapsUrl: INITIAL_WEDDING_DATA.googleMapsUrl,
+            youtubeVideoId: 'YgGG8UysqUE',
+            youtubeUrl: 'https://youtu.be/YgGG8UysqUE?si=NGfi1tD0d8vkKlnU',
+            khqrAccountName: 'SOPHAL SEM',
+            khqrAccountNumber: '600 807 171 (KHR) / 004 425 135 (USD)',
+            khqrKhrAccount: '600 807 171',
+            khqrUsdAccount: '004 425 135',
+            khqrBankName: 'ABA Bank',
+          };
+          localStorage.setItem('khmer_wedding_data', JSON.stringify(updated));
+          return updated;
+        }
+        return {
+          ...INITIAL_WEDDING_DATA,
+          ...parsed,
+          youtubeVideoId: parsed.youtubeVideoId || 'YgGG8UysqUE',
+        };
+      }
+      return INITIAL_WEDDING_DATA;
     } catch {
       return INITIAL_WEDDING_DATA;
-    }
-  });
-
-  const [wishes, setWishes] = useState<GuestWish[]>(() => {
-    try {
-      const saved = localStorage.getItem('khmer_wedding_wishes');
-      return saved ? JSON.parse(saved) : INITIAL_WISHES;
-    } catch {
-      return INITIAL_WISHES;
     }
   });
 
@@ -58,14 +84,11 @@ export default function App() {
   const handleOpenEnvelope = () => {
     weddingAudio.playEnvelopeOpenSound();
     setEnvelopeOpen(true);
-    // Start ambient gentle harmony
-    weddingAudio.start();
     setIsPlayingMusic(true);
   };
 
   const handleToggleMusic = () => {
-    const state = weddingAudio.togglePlay(setIsPlayingMusic);
-    setIsPlayingMusic(state);
+    setIsPlayingMusic((prev) => !prev);
   };
 
   const handleToggleLang = () => {
@@ -76,21 +99,6 @@ export default function App() {
     setWedding(newData);
     try {
       localStorage.setItem('khmer_wedding_data', JSON.stringify(newData));
-    } catch {
-      // storage error
-    }
-  };
-
-  const handleAddWish = (wishData: Omit<GuestWish, 'id' | 'createdAt'>) => {
-    const newWish: GuestWish = {
-      ...wishData,
-      id: 'wish-' + Date.now(),
-      createdAt: lang === 'km' ? 'អម្បាញ់មិញ' : 'Just now',
-    };
-    const updated = [newWish, ...wishes];
-    setWishes(updated);
-    try {
-      localStorage.setItem('khmer_wedding_wishes', JSON.stringify(updated));
     } catch {
       // storage error
     }
@@ -149,7 +157,15 @@ export default function App() {
         isPlayingMusic={isPlayingMusic}
         onToggleMusic={handleToggleMusic}
         onOpenEditor={() => setIsEditorOpen(true)}
-        onScrollToRsvp={() => scrollToSection('rsvp')}
+        onScrollToGift={() => scrollToSection('gift')}
+      />
+
+      {/* YouTube Wedding Music Player */}
+      <YouTubeMusicPlayer
+        videoId={wedding.youtubeVideoId || 'YgGG8UysqUE'}
+        isPlaying={isPlayingMusic}
+        onTogglePlay={handleToggleMusic}
+        lang={lang}
       />
 
       {/* Main Content Area */}
@@ -192,15 +208,7 @@ export default function App() {
         {/* 5. Venue Location & Google Maps */}
         <VenueMap wedding={wedding} lang={lang} />
 
-        {/* 6. RSVP & Live Wishes Guestbook */}
-        <RsvpForm
-          guestName={guestName}
-          wishes={wishes}
-          onAddWish={handleAddWish}
-          lang={lang}
-        />
-
-        {/* 7. Gift Envelope & KHQR Bakong */}
+        {/* 6. Gift Envelope & KHQR Bakong */}
         <GiftEnvelope wedding={wedding} lang={lang} />
       </main>
 
