@@ -84,7 +84,7 @@ export const InvitationLetter: React.FC<InvitationLetterProps> = ({
               {lang === 'km' ? 'មាតាបិតាខាងកូនប្រុស' : "Groom's Parents"}
             </span>
             <div className="space-y-1 font-medium text-[#3A2F27] text-sm sm:text-base">
-              <div>{wedding.groomFatherKhmer}</div>
+              <div>{wedding.groomFatherKhmer?.replace(/សុឹម/g, 'ស៊ឹម')}</div>
               <div>{wedding.groomMotherKhmer}</div>
             </div>
             <div className="mt-3 pt-3 border-t border-stone-200">
@@ -92,7 +92,7 @@ export const InvitationLetter: React.FC<InvitationLetterProps> = ({
                 {lang === 'km' ? 'កូនប្រុសនាម' : 'Groom'}
               </span>
               <div className="font-moul text-lg text-[#8E2818] mt-0.5">
-                {wedding.groomNameKhmer}
+                {wedding.groomNameKhmer?.replace(/សុឹម/g, 'ស៊ឹម')}
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@ export const InvitationLetter: React.FC<InvitationLetterProps> = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white text-center">
             <p className="font-moul text-xl sm:text-2xl drop-shadow-md">
-              {wedding.groomNameKhmer} & {wedding.brideNameKhmer}
+              {wedding.groomNameKhmer?.replace(/សុឹម/g, 'ស៊ឹម')} & {wedding.brideNameKhmer}
             </p>
             <p className="text-xs sm:text-sm text-[#F7E7A9] font-cinzel tracking-wider mt-1 drop-shadow">
               {wedding.groomNameEnglish} & {wedding.brideNameEnglish}

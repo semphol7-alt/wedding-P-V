@@ -50,11 +50,11 @@ export interface WeddingData {
 }
 
 export const INITIAL_WEDDING_DATA: WeddingData = {
-  groomNameKhmer: 'សុឹម សុផល',
+  groomNameKhmer: 'ស៊ឹម សុផល',
   groomNameEnglish: 'SEM SOPHOL',
   brideNameKhmer: 'ម៉ាក់ កញ្ញាដាវីន',
   brideNameEnglish: 'MAK KANHADAVIN',
-  groomFatherKhmer: 'លោក សុឹម សុផាត',
+  groomFatherKhmer: 'លោក ស៊ឹម សុផាត',
   groomMotherKhmer: 'លោកស្រី ឆែម ហ៊ុច',
   brideFatherKhmer: 'លោក ម៉ាក់ គង់',
   brideMotherKhmer: 'លោកស្រី ឆិល វណ្ណា',

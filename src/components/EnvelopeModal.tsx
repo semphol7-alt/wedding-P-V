@@ -49,7 +49,9 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
             {lang === 'km' ? 'អាពាហ៍ពិពាហ៍រវាង' : 'The Wedding Celebration of'}
           </p>
           <div className="font-moul text-lg sm:text-xl text-[#2D241E] flex flex-wrap items-center justify-center gap-2">
-            <span className="text-[#8E2818]">{wedding.groomNameKhmer}</span>
+            <span className="text-[#8E2818]">
+              {wedding.groomNameKhmer?.replace(/សុឹម/g, 'ស៊ឹម') || 'ស៊ឹម សុផល'}
+            </span>
             <span className="text-xs font-sans text-[#C5A059] px-1 font-normal">&</span>
             <span className="text-[#8E2818]">{wedding.brideNameKhmer}</span>
           </div>

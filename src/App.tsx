@@ -24,10 +24,10 @@ export default function App() {
         if (
           !parsed.youtubeVideoId ||
           parsed.khqrAccountName === 'SOK CHANRITH & CHEA REAKSMEY' ||
+          parsed.groomNameKhmer !== 'ស៊ឹម សុផល' ||
+          parsed.groomFatherKhmer !== 'លោក ស៊ឹម សុផាត' ||
           parsed.groomNameEnglish !== 'SEM SOPHOL' ||
           parsed.brideNameEnglish !== 'MAK KANHADAVIN' ||
-          parsed.groomNameKhmer === 'សុខ ចាន់រិទ្ធិ' ||
-          !parsed.groomFatherKhmer?.includes('សុឹម') ||
           !parsed.khqrKhrAccount ||
           parsed.venueAddressKhmer?.includes('ភ្នំពេញថ្មី') ||
           parsed.venueAddressKhmer?.includes('សែនសុខ')
@@ -62,6 +62,10 @@ export default function App() {
         return {
           ...INITIAL_WEDDING_DATA,
           ...parsed,
+          groomNameKhmer: (parsed.groomNameKhmer || INITIAL_WEDDING_DATA.groomNameKhmer).replace(/សុឹម/g, 'ស៊ឹម'),
+          groomFatherKhmer: (parsed.groomFatherKhmer || INITIAL_WEDDING_DATA.groomFatherKhmer).replace(/សុឹម/g, 'ស៊ឹម'),
+          groomNameEnglish: 'SEM SOPHOL',
+          brideNameEnglish: 'MAK KANHADAVIN',
           youtubeVideoId: parsed.youtubeVideoId || 'YgGG8UysqUE',
         };
       }
@@ -252,7 +256,7 @@ export default function App() {
           <div className="flex items-center justify-center gap-2 text-[#8E2818]">
             <Heart className="w-4 h-4 fill-[#8E2818]" />
             <span className="font-moul text-base sm:text-lg">
-              {wedding.groomNameKhmer} & {wedding.brideNameKhmer}
+              {wedding.groomNameKhmer?.replace(/សុឹម/g, 'ស៊ឹម')} & {wedding.brideNameKhmer}
             </span>
             <Heart className="w-4 h-4 fill-[#8E2818]" />
           </div>
