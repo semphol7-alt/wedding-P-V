@@ -53,7 +53,7 @@ export const EnvelopeModal: React.FC<EnvelopeModalProps> = ({
             <span className="text-xs font-sans text-[#C5A059] px-1 font-normal">&</span>
             <span className="text-[#8E2818]">{wedding.brideNameKhmer}</span>
           </div>
-          <div className="text-xs text-stone-500 font-cinzel mt-1">
+          <div className="text-xs text-stone-500 font-cinzel mt-1 uppercase tracking-wider font-semibold">
             {wedding.groomNameEnglish} & {wedding.brideNameEnglish}
           </div>
         </div>

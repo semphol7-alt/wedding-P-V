@@ -24,12 +24,24 @@ export default function App() {
         if (
           !parsed.youtubeVideoId ||
           parsed.khqrAccountName === 'SOK CHANRITH & CHEA REAKSMEY' ||
+          parsed.groomNameEnglish !== 'SEM SOPHOL' ||
+          parsed.brideNameEnglish !== 'MAK KANHADAVIN' ||
+          parsed.groomNameKhmer === 'សុខ ចាន់រិទ្ធិ' ||
+          !parsed.groomFatherKhmer?.includes('សុឹម') ||
           !parsed.khqrKhrAccount ||
           parsed.venueAddressKhmer?.includes('ភ្នំពេញថ្មី') ||
           parsed.venueAddressKhmer?.includes('សែនសុខ')
         ) {
           const updated = {
             ...parsed,
+            groomNameKhmer: INITIAL_WEDDING_DATA.groomNameKhmer,
+            groomNameEnglish: INITIAL_WEDDING_DATA.groomNameEnglish,
+            brideNameKhmer: INITIAL_WEDDING_DATA.brideNameKhmer,
+            brideNameEnglish: INITIAL_WEDDING_DATA.brideNameEnglish,
+            groomFatherKhmer: INITIAL_WEDDING_DATA.groomFatherKhmer,
+            groomMotherKhmer: INITIAL_WEDDING_DATA.groomMotherKhmer,
+            brideFatherKhmer: INITIAL_WEDDING_DATA.brideFatherKhmer,
+            brideMotherKhmer: INITIAL_WEDDING_DATA.brideMotherKhmer,
             venueNameKhmer: INITIAL_WEDDING_DATA.venueNameKhmer,
             venueNameEnglish: INITIAL_WEDDING_DATA.venueNameEnglish,
             venueHall: INITIAL_WEDDING_DATA.venueHall,

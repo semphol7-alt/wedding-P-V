@@ -50,14 +50,14 @@ export interface WeddingData {
 }
 
 export const INITIAL_WEDDING_DATA: WeddingData = {
-  groomNameKhmer: 'សុខ ចាន់រិទ្ធិ',
-  groomNameEnglish: 'Sok Chanrith',
-  brideNameKhmer: 'ជា រស្មី',
-  brideNameEnglish: 'Chea Reaksmey',
-  groomFatherKhmer: 'លោក សុខ គឹមហេង',
-  groomMotherKhmer: 'លោកស្រី ម៉ៅ សុភា',
-  brideFatherKhmer: 'លោក ជា សុផល',
-  brideMotherKhmer: 'លោកស្រី កែវ ចិន្តា',
+  groomNameKhmer: 'សុឹម សុផល',
+  groomNameEnglish: 'SEM SOPHOL',
+  brideNameKhmer: 'ម៉ាក់ កញ្ញាដាវីន',
+  brideNameEnglish: 'MAK KANHADAVIN',
+  groomFatherKhmer: 'លោក សុឹម សុផាត',
+  groomMotherKhmer: 'លោកស្រី ឆែម ហ៊ុច',
+  brideFatherKhmer: 'លោក ម៉ាក់ គង់',
+  brideMotherKhmer: 'លោកស្រី ឆិល វណ្ណា',
   weddingDateFormattedKhmer: 'ថ្ងៃអាទិត្យ ទី១៥ ខែវិច្ឆិកា ឆ្នាំ២០២៦',
   weddingDateFormattedEnglish: 'Sunday, November 15, 2026',
   lunarDateKhmer: 'ត្រូវនឹងថ្ងៃ ៧កើត ខែកត្តិក ឆ្នាំមមី អដ្ឋស័ក ព.ស. ២៥៧០',
